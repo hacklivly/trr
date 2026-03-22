@@ -1,0 +1,63 @@
+/* 
+FILE: styles.css
+DESCRIPTION: Custom CSS file. Save as "styles.css" in the same folder as index.html.
+             Contains all animations, keyframes, and extra styling not covered by Tailwind.
+             Every line is commented so you can fix errors easily.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Tailwind script runs after load - we force some custom classes */
+@layer utilities {
+    .animate-fade-in {
+        animation: fadeIn 1.5s ease forwards;
+    }
+    
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-pop-in {
+        animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Dish card hover effect */
+.dish-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dish-card:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 25px 50px -12px rgb(249 115 22 / 0.3);
+}
+
+/* Modal backdrop blur */
+#order-modal {
+    animation: fadeIn 0.3s ease;
+}
