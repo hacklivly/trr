@@ -1,0 +1,191 @@
+<!-- 
+FILE: index.html
+DESCRIPTION: This is the MAIN homepage file. Save it as "index.html" in your project folder.
+             Open it directly in any browser (Chrome/Firefox) to see the full website.
+             It links to styles.css and script.js automatically.
+             Fully responsive, modern, aesthetic food-truck vibe with dark theme, vibrant orange accents, smooth animations, and bilingual (EN/IT) toggle.
+             All errors (wrong URLs) should be handled by your hosting provider pointing to 404.html (see note in script.js).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloce Truck • Italian Street Eats</title>
+    
+    <!-- Tailwind CSS CDN (makes it stunning & modern without writing 1000 lines of CSS) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Link to our custom CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts for elegant modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-zinc-950 text-white font-inter overflow-x-hidden">
+    
+    <!-- NAV BAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-orange-500/20">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-2xl animate-bounce">🚚</div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tighter" id="logo-en">VELOCE TRUCK</h1>
+                    <h1 class="text-2xl font-bold tracking-tighter hidden" id="logo-it">VELOCE TRUCK</h1>
+                </div>
+            </div>
+            
+            <!-- Menu Links -->
+            <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest">
+                <a href="#menu" onclick="smoothScrollTo('menu')" class="hover:text-orange-400 transition">MENU</a>
+                <a href="#about" onclick="smoothScrollTo('about')" class="hover:text-orange-400 transition">ABOUT</a>
+                <a href="#contact" onclick="smoothScrollTo('contact')" class="hover:text-orange-400 transition">CONTACT</a>
+            </div>
+            
+            <!-- Language Toggle + Order Button -->
+            <div class="flex items-center gap-4">
+                <div onclick="toggleLanguage()" class="flex border border-orange-500 rounded-full overflow-hidden cursor-pointer">
+                    <button id="btn-en" class="px-4 py-2 text-xs font-bold bg-orange-500 text-black">EN</button>
+                    <button id="btn-it" class="px-4 py-2 text-xs font-bold">IT</button>
+                </div>
+                <button onclick="window.location.hash='menu'; document.getElementById('menu').scrollIntoView({behavior:'smooth'})" 
+                        class="bg-orange-500 hover:bg-orange-600 text-black font-bold px-6 py-3 rounded-xl transition flex items-center gap-2">
+                    <span id="order-btn-en">ORDER NOW</span>
+                    <span id="order-btn-it" class="hidden">ORDINA ORA</span>
+                    <span class="text-xl">→</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION - Unique food-truck aesthetic with parallax feel -->
+    <section class="relative h-screen flex items-center justify-center bg-[url('https://picsum.photos/id/1015/2000/1200')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-zinc-950"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-4xl">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl mb-6 border border-white/20">
+                <span class="text-orange-400 text-xl">🚚</span>
+                <span id="hero-badge-en" class="text-sm tracking-widest">KANPUR • ITALY ON WHEELS</span>
+                <span id="hero-badge-it" class="text-sm tracking-widest hidden">KANPUR • ITALIA SU RUOTE</span>
+            </div>
+            
+            <h1 id="hero-title-en" class="text-7xl md:text-8xl font-playfair leading-none mb-4 animate-fade-in">
+                STREET ITALIAN<br>FLAVORS
+            </h1>
+            <h1 id="hero-title-it" class="text-7xl md:text-8xl font-playfair leading-none mb-4 animate-fade-in hidden">
+                SAPORI ITALIANI<br>DA STRADA
+            </h1>
+            
+            <p id="hero-subtitle-en" class="text-xl md:text-2xl text-orange-200 max-w-lg mx-auto mb-10">
+                Fresh pasta, crispy arancini &amp; gelato — served from our truck with love ❤️
+            </p>
+            <p id="hero-subtitle-it" class="text-xl md:text-2xl text-orange-200 max-w-lg mx-auto mb-10 hidden">
+                Pasta fresca, arancini croccanti e gelato — serviti dal nostro camion con amore ❤️
+            </p>
+            
+            <button onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" 
+                    class="group bg-white text-black font-bold text-lg px-10 py-5 rounded-2xl hover:scale-110 transition flex items-center gap-3 mx-auto">
+                <span id="hero-cta-en">BROWSE MENU</span>
+                <span id="hero-cta-it" class="hidden">SCOPRI IL MENU</span>
+                <span class="text-3xl group-hover:rotate-12 transition">🍝</span>
+            </button>
+        </div>
+        
+        <!-- Floating truck icon animation -->
+        <div class="absolute bottom-10 right-10 text-6xl animate-float">🚚</div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 bg-zinc-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-orange-400 text-sm tracking-widest">OUR STORY</span>
+                    <h2 id="about-title-en" class="text-5xl font-playfair mt-3">From Rome to your street in 8 minutes</h2>
+                    <h2 id="about-title-it" class="text-5xl font-playfair mt-3 hidden">Da Roma alla tua strada in 8 minuti</h2>
+                    
+                    <p id="about-text-en" class="mt-8 text-lg text-zinc-400">
+                        We are a mobile Italian kitchen on wheels. Every dish is made fresh with ingredients flown from Italy. 
+                        No restaurant, just pure street food joy. Come hungry!
+                    </p>
+                    <p id="about-text-it" class="mt-8 text-lg text-zinc-400 hidden">
+                        Siamo una cucina italiana mobile su ruote. Ogni piatto è preparato fresco con ingredienti importati dall'Italia. 
+                        Niente ristorante, solo pura gioia di street food. Vieni affamato!
+                    </p>
+                </div>
+                <div class="relative">
+                    <img src="https://picsum.photos/id/201/800/600" alt="Food Truck" 
+                         class="rounded-3xl shadow-2xl rotate-3 hover:rotate-0 transition">
+                    <div class="absolute -bottom-6 -left-6 bg-zinc-800 p-6 rounded-2xl border border-orange-500/30">
+                        <div class="text-4xl">🇮🇹</div>
+                        <p id="about-stat-en" class="text-orange-400 font-bold">100% Authentic Italian</p>
+                        <p id="about-stat-it" class="text-orange-400 font-bold hidden">100% Autentico Italiano</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTION - The heart of the site -->
+    <section id="menu" class="py-24 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-orange-400 uppercase text-sm">Fresh from the truck</span>
+                <h2 id="menu-title-en" class="text-6xl font-playfair mt-3">Our Menu</h2>
+                <h2 id="menu-title-it" class="text-6xl font-playfair mt-3 hidden">Il Nostro Menu</h2>
+            </div>
+            
+            <!-- Menu will be injected here by JavaScript -->
+            <div id="menu-container" class="grid md:grid-cols-3 gap-8">
+                <!-- Populated dynamically by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 border-t border-orange-500/20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center gap-8 text-3xl mb-8">
+                <span>📍 Kanpur</span>
+                <span>📞 +39 123 456 7890</span>
+            </div>
+            <p class="text-zinc-500">© 2026 Veloce Truck • Made with ❤️ for street food lovers</p>
+        </div>
+    </footer>
+
+    <!-- ORDER MODAL (appears when clicking any "Order Now") -->
+    <div id="order-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-6">
+        <div class="bg-zinc-900 rounded-3xl max-w-md w-full p-8 relative animate-pop-in">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-3xl">✕</button>
+            
+            <h3 id="modal-title-en" class="text-3xl font-playfair mb-8">Quick Order</h3>
+            <h3 id="modal-title-it" class="text-3xl font-playfair mb-8 hidden">Ordine Veloce</h3>
+            
+            <form id="order-form" onsubmit="handleOrderSubmit(event)">
+                <input type="text" id="customer-name" placeholder="Your Name" required
+                       class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 mb-4 focus:outline-none focus:border-orange-500">
+                
+                <input type="tel" id="customer-phone" placeholder="Phone Number (with country code)" required
+                       class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 mb-4 focus:outline-none focus:border-orange-500">
+                
+                <select id="dish-select" required
+                        class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 mb-8 focus:outline-none focus:border-orange-500">
+                    <!-- Populated by JS -->
+                </select>
+                
+                <button type="submit"
+                        class="w-full bg-orange-500 hover:bg-orange-600 text-black font-bold py-5 rounded-2xl text-xl transition">
+                    <span id="buy-btn-en">SEND TO WHATSAPP →</span>
+                    <span id="buy-btn-it" class="hidden">INVIA SU WHATSAPP →</span>
+                </button>
+            </form>
+            
+            <p class="text-center text-xs text-zinc-500 mt-6">You will be redirected to WhatsApp to confirm your order</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
